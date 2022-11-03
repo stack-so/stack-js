@@ -1,4 +1,4 @@
-# Stack JS Client Library
+# @stack-so/stack-js
 
 [![npm package][npm-img]][npm-url]
 [![Build Status][build-img]][build-url]
@@ -7,6 +7,8 @@
 [![Code Coverage][codecov-img]][codecov-url]
 [![Commitizen Friendly][commitizen-img]][commitizen-url]
 [![Semantic Release][semantic-release-img]][semantic-release-url]
+
+> Stack JS Client Library
 
 ## Install the Stack client library
 
