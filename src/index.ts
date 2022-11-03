@@ -93,7 +93,7 @@ export class StackClient {
     assert(success, STACK_CLIENT_ERRORS.UNEXPECTED_SERVER_RESPONSE);
   }
 
-  private getCurrentTime() {
+  private getCurrentTime(): number {
     const published = Date.now();
     return published;
   }
@@ -127,7 +127,7 @@ export class StackClient {
   }
 }
 
-export function initStack(key: string) {
+export function initStack(key: string): StackClient {
   const stack_ = new StackClient({ key });
   return stack_;
 }
