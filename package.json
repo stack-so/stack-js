@@ -27,6 +27,9 @@
     "email": "g@stack.so",
     "url": "https://github.com/stack-so"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "engines": {
     "node": ">=12.0"
   },
