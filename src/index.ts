@@ -1,8 +1,8 @@
 import assert from 'assert';
 
 export const STACK_API_ENDPOINTS = {
-  TRACK: 'https://www.stack-so/api/v1/track',
-  QUERY: 'https://www.stack-so/api/v1/query',
+  TRACK: 'https://www.stack.so/api/v1/track',
+  QUERY: 'https://www.stack.so/api/v1/query',
 };
 
 export const STACK_CLIENT_ERRORS = {
