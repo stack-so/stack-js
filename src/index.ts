@@ -2,6 +2,7 @@ import assert from 'assert';
 
 export const STACK_API_ENDPOINTS = {
   TRACK: 'https://www.stack-so/api/v1/track',
+  QUERY: 'https://www.stack-so/api/v1/query',
 };
 
 export const STACK_CLIENT_ERRORS = {
@@ -47,6 +48,19 @@ export class StackClient {
   constructor(config: ClientConfig) {
     this.validateConfig(config);
     this.config = config;
+  }
+
+  async query(query = 'last_day'): any {
+    const queryResponse = await fetch(STACK_API_ENDPOINTS.QUERY, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${this.config.key}`,
+      },
+    });
+
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+    return await queryResponse.json();
   }
 
   async track(
