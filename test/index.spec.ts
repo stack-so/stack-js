@@ -45,6 +45,40 @@ describe('index', () => {
         });
       });
 
+      describe('query', () => {
+        let client: StackClient;
+
+        beforeAll(() => {
+          client = initStack(validKey);
+        });
+
+        beforeEach(() => {
+          // @ts-ignore
+          global.fetch = jest.fn(() => {
+            return Promise.resolve({
+              json: () => Promise.resolve({ success: true }),
+            });
+          });
+        });
+
+        beforeEach(async () => {
+          await client.query();
+        });
+
+        it('calls the api', () => {
+          // Only gets called once.
+          expect(fetch).toHaveBeenCalledTimes(1);
+          // Gets called with the expected properties.
+          expect(fetch).toHaveBeenCalledWith(STACK_API_ENDPOINTS.QUERY, {
+            headers: {
+              Authorization: `Bearer ${validKey}`,
+              'Content-Type': 'application/json',
+            },
+            method: 'GET',
+          });
+        });
+      });
+
       describe('track', () => {
         const validType = 'CONNECT_WALLET';
         let client: StackClient;
