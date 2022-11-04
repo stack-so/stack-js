@@ -50,7 +50,7 @@ export class StackClient {
     this.config = config;
   }
 
-  async query(query = 'last_day'): any {
+  async query(query = 'last_day'): Promise<any> {
     const queryResponse = await fetch(STACK_API_ENDPOINTS.QUERY, {
       method: 'GET',
       headers: {
