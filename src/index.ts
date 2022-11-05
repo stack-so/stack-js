@@ -66,7 +66,7 @@ export class StackClient {
   async track(
     type: string,
     activity?: Activity
-  ): Promise<LoggableActivityType> {
+  ): Promise<{ activity: LoggableActivityType }> {
     this.validateActivityType(type);
 
     if (activity) {
@@ -88,7 +88,7 @@ export class StackClient {
       console.error(e);
     }
 
-    return loggableActivity;
+    return { activity: loggableActivity };
   }
 
   private async logActivity(loggableActivity: LoggableActivityType) {
@@ -98,7 +98,7 @@ export class StackClient {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${this.config.key}`,
       },
-      body: JSON.stringify(loggableActivity),
+      body: JSON.stringify({ activity: loggableActivity }),
     });
 
     const logResult = await logResponse.json();

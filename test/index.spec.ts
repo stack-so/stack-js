@@ -167,20 +167,21 @@ describe('index', () => {
             id: 3,
           };
 
-          let response: LoggableActivityType;
+          let activity: LoggableActivityType;
 
           beforeEach(async () => {
-            response = await client.track(validType, {
+            const response = await client.track(validType, {
               actor,
               object,
             });
+            activity = response.activity;
           });
 
           it('returns the full activity to log', () => {
-            expect(response.type === validType);
-            expect(typeof response.published === 'number');
-            expect(response.actor).toMatchObject(actor);
-            expect(response.object).toMatchObject(object);
+            expect(activity.type === validType);
+            expect(typeof activity.published === 'number');
+            expect(activity.actor).toMatchObject(actor);
+            expect(activity.object).toMatchObject(object);
           });
 
           it('sends the data to the API', () => {
@@ -188,7 +189,7 @@ describe('index', () => {
             expect(fetch).toHaveBeenCalledTimes(1);
             // Gets called with the expected properties.
             expect(fetch).toHaveBeenCalledWith(STACK_API_ENDPOINTS.TRACK, {
-              body: JSON.stringify(response),
+              body: JSON.stringify({ activity }),
               headers: {
                 Authorization: `Bearer ${validKey}`,
                 'Content-Type': 'application/json',
